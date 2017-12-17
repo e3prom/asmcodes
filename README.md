@@ -1,8 +1,21 @@
 # Shellcode
-This repository holds a collection of shellcodes I wrote for various operating systems, architectures and instruction sets. Null bytes have been removed whenever possible so the shellcode can be used inside of buffers or over common protocols without breaking. They've not been optimized for size, therefore they genenate lengthy machine codes. They're however interesting for educational purpose as you can easily decode them and can be used as a reference for further improvements (e,g. reducing machine code size, omiting bad characters and/or avoiding detection).
+This repository holds a collection of shellcodes I wrote for various operating systems, architectures and instruction sets. Null bytes have been avoided whenever possible so the shellcodes could be used inside buffers or transmitted over common protocols without terminating. The shellcodes have not been optimized for their machine code's lengths, nor for their compatibility. They're however interesting for educational purposes as you can more easily parse them and can be used as a reference for further improvements.
 
 ## Assembly
-These shellcodes can be assembled using NASM. Linux shellcodes have been tested and debugged on a 64-bits Ubuntu 17.10 (4.13.0-17-generic).
+Otherwise stated in the comments of the source files, all shellcodes can be assembled using the [NASM](http://www.nasm.us) assembler.
+
+'''
+.
+├── linux-x86
+│   ├── lnx-execve-setreuid-x86_32.s
+│   └── lnx-execve-x86_32.s
+└── linux-x86_64
+    ├── lnx-execve-setreuid-x86_64.s
+    └── lnx-execve-x86_64.s
+'''
+
+## Notes & Observations
+ * Linux shellcodes have been tested and debugged on a 64-bit Ubuntu 17.10 host with ASLR and DEP enabled.
 
 ## Disclaimer
-Please make proper use of these shellcodes. They are intended for education purposes only.
+Please make proper use of these shellcodes. They are intended for educational purposes only.
