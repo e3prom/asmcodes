@@ -5,14 +5,15 @@ This repository holds a collection of shellcodes I wrote for various operating s
 Otherwise stated in the comments of the source files, all shellcodes can be assembled using the [NASM](http://www.nasm.us) assembler.
 
 ```
-.
 ├── linux-x86
 │   ├── lnx-execve-callsub-x86_32.s
+│   ├── lnx-execve-cdq-xchg-x86_32.s
 │   ├── lnx-execve-setreuid-x86_32.s
 │   └── lnx-execve-x86_32.s
-└── linux-x86_64
-    ├── lnx-execve-setreuid-x86_64.s
-    └── lnx-execve-x86_64.s
+├── linux-x86_64
+│   ├── lnx-execve-setreuid-x86_64.s
+│   └── lnx-execve-x86_64.s
+└── README.md
 ```
 
 ## Development Files
