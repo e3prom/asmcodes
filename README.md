@@ -11,13 +11,15 @@ Unless otherwise stated in the comment block of the source files, all shellcodes
 │   ├── lnx-execve-setreuid-x86_32.s
 │   └── lnx-execve-x86_32.s
 ├── linux-x86_64
-    ├── lnx-execve-fast-x86_64.s
-    ├── lnx-execve-setreuid-x86_64.s
-    └── lnx-execve-x86_64.s
+│   ├── lnx-execve-fast-x86_64.s
+│   ├── lnx-execve-setreuid-x86_64.s
+│   └── lnx-execve-x86_64.s
+└── win_x86
+    └── win-reverse-tcp-x86_32.s
 ```
 
 ## Development Files
-In addition to the shellcodes, the repository may also includes several accompanying development files, mostly written in C. Among those, exploit development examples, proof of concept codes, and more.
+In addition to the shellcodes, the repository includes several accompanying development files, mostly written in C. Among those, exploit development examples, proof of concept codes, and more.
 
 ## Notes
  * Most shellcodes are written using the Intel syntax, with comments following all important instructions.
