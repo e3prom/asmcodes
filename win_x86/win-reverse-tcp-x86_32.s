@@ -1,29 +1,44 @@
 ; win-reverse-tcp-x86_32.s
-; Basic Windows Reverse TCP Shellcode for x86 instruction set.
-; 343 bytes null-free shellcode for Windows 7 (x86).
+; Basic Windows Reverse TCP (connectback) Shellcode for x86 instruction set.
+; 343 bytes null-free shellcode for Windows 7+ (x86).
 ;
 ; This shellcode has been successfully tested on:
 ; [X] Windows 7 Ultimate 6.1.7601 Service Pack 1 Build 7601 (x86)
 ;
 ; Written by e3prom (github.com/e3prom)
-; Based on the 2003 paper named 'Understand Windows Shellcode' by skape.
-; From Windows 7 onward, the kernel32.dll module handler is listed third and in
-; the load module list and not second as it's the case with previous version of
-; windows.
+; Based on the 2003 paper named 'Understanding Windows Shellcode' by Skape.
+; From Windows 7 onward, the kernel32.dll module handler is listed third in the
+; load module list and not second as it were the case with previous versions of
+; the windows operating system.
 ;
-; Notes:
+; Notes
+; -----
 ; Keep in mind this shellcode has only been optimized for being null-byte free
 ; and is certainly not short. Nothing novel here, except it could be used as a
 ; reference for understanding how shellcode on Windows works and what you could
-; possibility do with the Windows API. 
+; possibility do with the Windows API.
 ;
-; The call to ExitProcess() is optional and must be even avoided in some cases. 
+; The call to ExitProcess() is optional and must be even avoided in some cases.
+; If you want to leverage it, simply uncomment the instruction at the end of
+; this source file.
 ;
-; Assembly Instructions;
-; nasm -f win32 win-reverse-tcp-x86_32.s -o win-reverse-tcp-x86_32.obj
-; /usr/bin/i686-w64-mingw32-gcc-win32 -m32 win-reverse-tcp-x86_32.obj -o \
-; win-reverse-tcp-x86_32.exe
-; objdump -d win-reverse-tcp-x86_32.exe
+; The call to CreateProcess() may be expensive but allow the shellcode to be
+; spawned as a new process, detached from the vulnerable parent. If the latter
+; crashed due to let's say an access violation, the shellcode should stay
+; alive and may even be without user detection.
+;
+; Assembly
+; --------
+; Assembly Instructions for buidling a PE/COFF executable on Linux:
+;  nasm -f win32 win-reverse-tcp-x86_32.s -o win-reverse-tcp-x86_32.obj
+;  /usr/bin/i686-w64-mingw32-gcc-win32 -m32 win-reverse-tcp-x86_32.obj -o \
+;  win-reverse-tcp-x86_32.exe
+;  objdump -d win-reverse-tcp-x86_32.exe
+;
+; Assembly and convertion as hex escaped string:
+;  nasm win-reverse-tcp-x86_32.s -o win-reverse-tcp-x86_32.o
+;  xxd -ps win-reverse-tcp-x86_32.o | xcp
+;
 BITS 32
 
 section .text
