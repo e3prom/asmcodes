@@ -5,7 +5,13 @@ This repository holds a collection of shellcodes I wrote for various operating s
 Unless otherwise stated in the comment block of the source files, all shellcodes can be assembled using the [NASM](http://www.nasm.us) assembler.
 
 ```
-├── linux-x86
+.
+|── linux-x86
+│   ├── lnx-bind-sctp-execve-shrt-x86_32.s
+│   ├── lnx-bind-sctp-execve-x86_32.s
+│   ├── lnx-bind-tcp-execve-x86_32.s
+│   ├── lnx-connback-sctp-execve-x86_32.s
+│   ├── lnx-connback-tcp-execve-x86_32.s
 │   ├── lnx-execve-callsub-x86_32.s
 │   ├── lnx-execve-cdq-xchg-x86_32.s
 │   ├── lnx-execve-setreuid-x86_32.s
