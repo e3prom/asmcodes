@@ -1,7 +1,7 @@
 # Shellcode
-This repository holds a collection of (or more commonly called 'shellcodes') I wrote for various operating systems, architectures and CPU instruction sets.
+This repository holds a collection of asmcodes (or more commonly called 'shellcodes') I wrote for various operating systems, architectures and CPU instruction sets.
 
-All shellcodes are null-byte free so they can be transmitted inside buffers and over common protocols being null-terminated. Keep in mind that most shellcodes have not been optimized in terms of length and portability, however they are still interesting for educational purposes as you can easily read them and understand their behavior and how they works. The asmcodes can also be used as a reference for further improvements or for studying shellcode development.
+All shellcodes are null free so they can be transmitted inside buffers and over common protocols without being null-terminated. Keep in mind that most shellcodes have not been optimized in terms of length and portability, however they are still interesting for educational purposes as you can easily read them and understand their behavior and how they works. The asmcodes can also be used as a reference for further improvements or for studying shellcode development.
 
 ## Shellcodes Assembly
 Unless otherwise stated in the comment block of the source files, all shellcodes can be assembled using the [NASM](http://www.nasm.us) assembler.
