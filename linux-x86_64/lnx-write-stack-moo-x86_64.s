@@ -1,8 +1,8 @@
 ; lnx-write-stack-moo-x86_64.s
 ; Linux x86_64 shellcode that moo on standard output using the string on stack
-; method. This null-free shellcode is 271 bytes long and has not been optimized
-; for size, but it illustrates how you can push several long strings onto the
-; stack. Note the call to exit (#60) with status code 0.
+; method. This null-free shellcode is 267 bytes long and has not been optimized
+; for its size, but it illustrates how you can push long strings onto the stack
+; Note the call to exit (#60) with status code 0.
 ;
 ; Assembly instructions:
 ; nasm lnx-write-stack-moo-x86_64.s
@@ -86,7 +86,7 @@ _start:
 
   mov rsi, rsp                  ; Copy stack pointer to RSI (argv[2])
   xor rdx, rdx                  ; Set RDX (argv[3]) to string's size
-  add rdx, 230                  ; Our string is 230 bytes long
+  add dl, 230                   ; Our string is 230 bytes long
   syscall
 
   ; void _exit(int status);
